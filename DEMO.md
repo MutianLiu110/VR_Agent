@@ -1,5 +1,7 @@
 # Unity + Spring Boot + Python Agent 最小联调示例
 
+[English](DEMO_EN.md)
+
 这个示例展示三层如何交互，不是完整医疗训练产品。原始毕业设计要求见 [readme.md](readme.md)。
 
 macOS 打包、Docker 和临时线上部署见 [DEPLOYMENT.md](DEPLOYMENT.md)。

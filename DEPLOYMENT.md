@@ -1,5 +1,7 @@
 # macOS 客户端与临时线上服务
 
+[English](DEPLOYMENT_EN.md)
+
 ## 推荐展示结构
 
 ```text
