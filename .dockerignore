@@ -1,0 +1,8 @@
+.git/
+.venv/
+.m2cache/
+UnityProject/
+agent-python/
+agent-service/
+**/target/
+*.log

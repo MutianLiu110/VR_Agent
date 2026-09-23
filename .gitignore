@@ -1,0 +1,21 @@
+.env
+.env.*
+!.env.example
+**/target/
+.m2cache/
+.venv/
+**/__pycache__/
+.pytest_cache/
+.idea/
+.vscode/
+*.iml
+UnityProject/Library/
+UnityProject/Temp/
+UnityProject/Logs/
+UnityProject/UserSettings/
+UnityProject/Obj/
+UnityProject/Build/
+UnityProject/Builds/
+.docker-temp/
+# Unity build output
+/output/

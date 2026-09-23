@@ -1,0 +1,22 @@
+services:
+  agent:
+    build:
+      context: ./agent-python
+    environment:
+      DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:-}
+      DEEPSEEK_MODEL: ${DEEPSEEK_MODEL:-deepseek-flash}
+    expose:
+      - "8081"
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      AGENT_URL: http://agent:8081
+    depends_on:
+      - agent
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
