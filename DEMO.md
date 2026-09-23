@@ -22,10 +22,10 @@ Unity C# (8080)
 - `UnityProject` 包含 Unity 6 项目配置；也可以只把 `VrAgentDemoClient.cs` 复制到已有项目。示例场景先在桌面 Game 视图联调，不依赖 XR 包。
 - 无须 API key 也能验证三层链路：Agent 服务会返回模拟超时（HTTP 504），Unity 会显示超时反馈。没有 key 时不会生成固定医疗回答或环境建议。
 
-首次使用，在项目根目录创建 Python 虚拟环境并安装依赖。这台电脑的可用解释器是 `D:\anaconda3\python.exe`（当前 `python` 命令指向失效的安装）；其他电脑可替换成自己的 Python 3.10+：
+首次使用，在项目根目录使用 Python 3.10+ 创建虚拟环境并安装依赖：
 
 ```powershell
-& 'D:\anaconda3\python.exe' -m venv .venv
+python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r agent-python\requirements.txt
 ```
 
@@ -38,8 +38,7 @@ Unity C# (8080)
 终端二启动 Java 主服务：
 
 ```powershell
- $env:JAVA_HOME = 'C:\Program Files\Java\jdk-17'
-.\mvnw.cmd '-Dmaven.repo.local=F:\VR_Agent\.m2cache\repository' -pl backend spring-boot:run
+.\mvnw.cmd '-Dmaven.repo.local=.m2cache\repository' -pl backend spring-boot:run
 ```
 
 Python Agent 监听 `127.0.0.1:8081`；Java 主服务监听 `8080`。原来的 Java Agent 代码仍在 `agent-service/`，仅作对照；不要同时启动两个 Agent 服务占用 `8081`。
@@ -59,7 +58,7 @@ DELETE /api/sessions/{id}/messages
 
 ## 从 Unity 进入并看到反馈
 
-在 Unity Hub 的 **Projects > Open** 中选择 `F:\VR_Agent\UnityProject` 文件夹本身。此项目使用 Unity `6000.6.0f1`；本机编辑器位于 `F:\Unity\Hub\Editor\6000.6.0f1\Editor\Unity.exe`。如果 Hub 没有识别到该编辑器，可先在 Hub 的 **Installs > Locate** 中选择这个 `Unity.exe`，再打开项目。
+在 Unity Hub 的 **Projects > Open** 中选择仓库根目录下的 `UnityProject` 文件夹本身。此项目使用 Unity `6000.6.0f1`。如果 Hub 没有识别到该编辑器，可先在 Hub 的 **Installs > Locate** 中选择对应版本的 `Unity.exe`，再打开项目。
 
 1. 在 Unity 中打开 `UnityProject`，等待脚本导入完成，然后在 Project 面板双击 `Assets/Scenes/Demo.unity`。如果当前是空白的 `Untitled` 场景，双击后才会切换到演示场景。它包含训练房间、病床、患者与 Agent 占位角色、摄像机和灯光。也可以使用 `Tools > VR Agent > Open Demo Scene`。若正在 Play 模式，先退出 Play 模式再切换场景。
 2. 进入 Play 模式。Game 视图左上方有演示面板，输入问题并点击 `Ask Agent`。Unity 发送请求到 Java 主服务，主服务转发给 Agent 服务，再把结果传回 Unity。

@@ -28,7 +28,7 @@ https://vr-agent-demo.example.com
 结尾不需要 `/`。macOS 应用启动时会读取这个文件。调试时也可从终端覆盖：
 
 ```bash
-open Builds/macOS/VRAgentDemo.app --args --backend-url=https://example.com
+open UnityProject/Builds/macOS/VRAgentDemo.app --args --backend-url=https://example.com
 ```
 
 ## 2. 构建 macOS 应用
